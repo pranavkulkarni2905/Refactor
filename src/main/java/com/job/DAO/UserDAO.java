@@ -340,4 +340,38 @@ public class UserDAO {
 
 	}
 
+	public ResultSet getJobDetailsByJobId(int id) {
+
+		ResultSet rs = null;
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("select * from job_post where job_id=?");
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	public ResultSet getCompanyDetails(int id) {
+
+		ResultSet rs = null;
+
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("select * from recrutier_profile where RECRUITER_ID=?");
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+
+	}
+
 }
