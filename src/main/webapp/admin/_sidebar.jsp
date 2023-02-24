@@ -41,9 +41,9 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="build-resume.jsp">
+        <a class="nav-link collapsed" href="nonit-job-post.jsp">
           <i class="bi bi-file-earmark-code"></i>
-          <span>Post Job</span>
+          <span>Post NON-IT Job</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 

@@ -160,3 +160,31 @@ begin
 select job_post_seq.nextval into :new.job_id from dual;
 end;
 ======================================
+5. Non-IT Job
+
+create table non_it_job_post(
+job_id number primary key,
+job_title varchar2(4000),
+jo_type varchar2(4000),
+job_vaccancy varchar2(4000),
+job_location varchar2(4000),
+salary varchar2(4000),
+deadline varchar2(4000),
+job_desc varchar2(4000),
+skill_qualification varchar2(4000),
+posted_date varchar2(4000)
+);
+
+create sequence non_it_job_post_seq
+start with 1
+increment by 1;
+
+
+create or replace trigger non_it_job_post_trig
+before insert on non_it_job_post
+for each row
+begin
+select non_it_job_post_seq.nextval into :new.job_id from dual;
+end;
+
+======================================
