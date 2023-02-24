@@ -40,6 +40,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link href="../assets/css/style.css" rel="stylesheet">
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
   <style>
     body {
     font-family: 'Open Sans', sans-serif;
@@ -233,41 +235,41 @@ $(document).ready(function(){
             <span class="stepIndicator">Personal Information</span>
             <span class="stepIndicator">Social Profiles</span>
             <span class="stepIndicator">Resume</span>
+            <span class="stepIndicator">Questions</span>
             <span class="stepIndicator">Apply</span>
             
         </div>
         <!-- end step indicators -->
               
               <!-- <h5>Step 1: Personal Information</h5> -->
-
+		<div class="step">
                 <div class="col-md-12">
                   <label for="inputName5" class="form-label">Full Name</label>
                   <input type="text" class="form-control" id="inputName5" name="fName">
                 </div>
-                <div class="col-md-6">
+                
+               <div class="row">
+               
+                <div class="col-md-7 pt-2">
                   <label for="inputEmail5" class="form-label">Email</label>
                   <input type="email" class="form-control" id="inputEmail5" name="email">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5 pt-2">
                   <label for="inputPassword5" class="form-label">Phone no</label>
                   <input type="password" class="form-control" id="inputPhone5" name="phone">
                 </div>
                 
-                <div class="col-md-12">
-                  <label for="inputName5" class="form-label">LinkedIn Profile</label>
-                  <input type="text" class="form-control" id="inputName5" name="linkedin">
-                </div>
+                </div> 
                 
-                <div class="col-md-12">
-                  <label for="inputName5" class="form-label">GitHub Profile</label>
-                  <input type="text" class="form-control" id="inputName5" name="github">
-                </div>
                 
-                <div class="col-md-6">
+               <div class="row">
+               
+                <div class="col-md-6 pt-2">
                   <label for="inputEmail5" class="form-label">DOB</label>
                   <input type="date" class="form-control" id="inputDOB5" name="dob">
                 </div>
-                <div class="col-md-6">
+                
+                <div class="offset-1 col-md-4 pt-2">
                   <label for="inputPassword5" class="form-label">Gender</label>
                   <select id="inputState" class="form-select" name="gender">
                     <option selected>Choose...</option>
@@ -277,10 +279,78 @@ $(document).ready(function(){
                   </select>
                 </div>
                 
-                <div class="col-12">
+                </div> 
+                
+                <div class="col-12 pt-2">
                   <label for="inputAddress5" class="form-label">Address</label>
                   <input type="text" class="form-control" id="inputAddres5s" placeholder="" name="address">
                 </div>
+                
+                </div>
+                
+           <!--      step 2 -->
+                
+            <div class="step">
+            
+            	<div class="col-md-12 pt-2">
+                  <label for="inputName5" class="form-label">LinkedIn Profile</label>
+                  <input type="text" class="form-control" id="inputName5" name="linkedin">
+                </div>
+                
+                <div class="col-md-12 pt-2">
+                  <label for="inputName5" class="form-label">GitHub Profile</label>
+                  <input type="text" class="form-control" id="inputName5" name="github">
+                </div>
+  
+                </div>
+                
+               <!--   step 3 -->
+               
+          <div class="step">     
+               <div class="row mb-3">
+               
+                  
+                  
+                  <!-- Special title treatmen -->
+          <div class="card text-center">
+            
+            <div class="card-body">
+      
+              <div class="card-title"><i class="fa fa-file-pdf-o" style="font-size:30px"></i>Upload Your Own Resume</div>
+              
+             <!--  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+              <label for="inputNumber" class="col-sm-12 col-form-label text-center"></label>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="file" id="formFile">
+                  </div> 
+            </div>
+          </div><!-- End Special title treatmen -->
+          
+          <div class="card text-center">
+            
+            <div class="card-body">
+              <h5 class="card-title">Build a workconnect Resume</h5>
+             <!--  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+              <label for="inputNumber" class="col-sm-12 col-form-label text-center">We'll guide you through it </label>
+              
+              <a href="button" class="btn btn-primary" style="background-color:#009688;">Get Started</a>
+                   
+            </div>
+          </div>
+          
+          
+          	
+          
+          
+          
+          
+             
+                </div>
+                
+           </div>
+                
+                
+                
                 
                 
           
@@ -294,7 +364,7 @@ $(document).ready(function(){
      
         
         
-               <div class="form-footer d-flex pt-5">
+               <div class="form-footer d-flex pt-4">
             <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
             <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
         </div> 
@@ -507,8 +577,8 @@ $(document).ready(function(){
                // This function will figure out which tab to display
                var x = document.getElementsByClassName("step");
                // Exit the function if any field in the current tab is invalid:
-               if (n == 1 && !validateForm()) return false;
-               // Hide the current tab:
+/*                if (n == 1 && !validateForm()) return false; */
+               // Hide the current tab: 
                x[currentTab].style.display = "none";
                // Increase or decrease the current tab by 1:
                currentTab = currentTab + n;
@@ -522,7 +592,7 @@ $(document).ready(function(){
                showTab(currentTab);
              }
              
-             function validateForm() {
+             /* function validateForm() {
                // This function deals with validation of the form fields
                var x, y, i, valid = true;
                x = document.getElementsByClassName("step");
@@ -542,7 +612,7 @@ $(document).ready(function(){
                  document.getElementsByClassName("stepIndicator")[currentTab].className += " finish";
                }
                return valid; // return the valid status
-             }
+             } */
              
              function fixStepIndicator(n) {
                // This function removes the "active" class of all steps...
