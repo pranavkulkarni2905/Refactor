@@ -1,3 +1,5 @@
+<%@page import="com.job.DAO.UserDAO"%>
+<%@page import="com.job.model.UserResume"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="com.job.model.User"%>
@@ -189,6 +191,14 @@ $(document).ready(function(){
 <%@ include file="_sidebar.jsp" %>
 
 
+	<%
+	ServletContext sc2 = request.getServletContext();
+	UserDAO ad1 = new UserDAO();
+	//int id = (Integer) sc2.getAttribute("user-id");
+	int id=27;
+	User us = ad1.getUserDataById(id);
+	UserResume ur = ad1.getUserResumeDataById(id);
+	%>
 
   <main id="main" class="main">
   
@@ -245,18 +255,18 @@ $(document).ready(function(){
 		<div class="step">
                 <div class="col-md-12">
                   <label for="inputName5" class="form-label">Full Name</label>
-                  <input type="text" class="form-control" id="inputName5" name="fName">
+                  <input type="text" class="form-control" value="<%=us.getFirst_name() +" "+us.getMiddle_name()+" "+us.getLast_name() %> "id="inputName5" name="fName">
                 </div>
                 
                <div class="row">
                
                 <div class="col-md-7 pt-2">
                   <label for="inputEmail5" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="inputEmail5" name="email">
+                  <input type="email" class="form-control" value="<%=us.getEmail_id() %>" id="inputEmail5" name="email">
                 </div>
                 <div class="col-md-5 pt-2">
                   <label for="inputPassword5" class="form-label">Phone no</label>
-                  <input type="password" class="form-control" id="inputPhone5" name="phone">
+                  <input type="text" class="form-control" id="inputPhone5" input="<%=us.getPhon_no() %>" name="phone">
                 </div>
                 
                 </div> 
@@ -266,12 +276,12 @@ $(document).ready(function(){
                
                 <div class="col-md-6 pt-2">
                   <label for="inputEmail5" class="form-label">DOB</label>
-                  <input type="date" class="form-control" id="inputDOB5" name="dob">
+                  <input type="date" class="form-control" id="inputDOB5" value="<%=us.getDob() %>" name="dob">
                 </div>
                 
                 <div class="offset-1 col-md-4 pt-2">
                   <label for="inputPassword5" class="form-label">Gender</label>
-                  <select id="inputState" class="form-select" name="gender">
+                  <select id="inputState" class="form-select" value="<%=us.getGender() %>" name="gender">
                     <option selected>Choose...</option>
                     <option>Male</option>
                     <option>Female</option>
@@ -283,7 +293,9 @@ $(document).ready(function(){
                 
                 <div class="col-12 pt-2">
                   <label for="inputAddress5" class="form-label">Address</label>
-                  <input type="text" class="form-control" id="inputAddres5s" placeholder="" name="address">
+                  <input type="text" class="form-control" id="inputAddres5s" value="<%=ur.getLocation()+" "+ur.getCity()+" "+ur.getPincode() %>  placeholder="" name="address">
+                  
+                  
                 </div>
                 
                 </div>
@@ -294,12 +306,12 @@ $(document).ready(function(){
             
             	<div class="col-md-12 pt-2">
                   <label for="inputName5" class="form-label">LinkedIn Profile</label>
-                  <input type="text" class="form-control" id="inputName5" name="linkedin">
+                  <input type="text" class="form-control" id="inputName5" value="<%=us.getLinkedin_url() %>" name="linkedin">
                 </div>
                 
                 <div class="col-md-12 pt-2">
                   <label for="inputName5" class="form-label">GitHub Profile</label>
-                  <input type="text" class="form-control" id="inputName5" name="github">
+                  <input type="text" class="form-control" id="inputName5"  value="<%=us.getGithub_url() %>" name="github">
                 </div>
   
                 </div>

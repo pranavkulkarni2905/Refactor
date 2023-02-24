@@ -1,3 +1,5 @@
+<%@page import="com.job.DAO.UserDAO"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="com.job.model.User"%>
@@ -52,7 +54,18 @@ $(document).ready(function(){
 <%@ include file="_header.jsp" %>
 <%@ include file="_sidebar.jsp" %>
 
+<%
 
+	int id=1;
+	UserDAO ud=new UserDAO();
+	
+	ResultSet rs=ud.getJobDetailsByJobId(id);
+	rs.next();
+	
+	ResultSet rsCompany=ud.getCompanyDetails(rs.getInt(2));
+	rsCompany.next();
+
+%>
 
   <main id="main" class="main">
   
@@ -83,7 +96,7 @@ $(document).ready(function(){
      <div class="col-md-7 pt-5">
 
      
-     <div class="card" style="height :20rem">
+     <div class="card" style="height :21.5rem">
             <div class="card-body">
               <h5 class="card-title">Job Details</h5>
 
@@ -101,21 +114,20 @@ $(document).ready(function(){
               </ul>
               <div class="tab-content pt-2" id="borderedTabContent">
                 <div class="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="home-tab">
-                  Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.
-                  
+                <%=rs.getString(10) %>
                 </div>
                 <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
-                  Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
-                </div>
+				<%=rs.getString(11) %>            
+				</div>
                 <div class="tab-pane fade" id="bordered-contact" role="tabpanel" aria-labelledby="contact-tab">
-                  Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
-                </div>
+				<%=rsCompany.getString(13) %>            
+		    </div>
               </div><!-- End Bordered Tabs -->
               
               
               <!-- <button type="button" class="align-self-end btn btn-primary">Apply Now</button> -->
 <div class="position-absolute bottom-0 start-50 translate-middle-x">
-  <a href="#" class="btn btn-primary">Apply Now</a>
+  <a href="../user/job-apply.jsp" class="btn btn-primary">Apply Now</a>
 </div>
 
             </div>
@@ -132,12 +144,12 @@ $(document).ready(function(){
             <div class="card-body">
               <h5 class="card-title">Job Summary</h5>
               
-              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Published On: </p>
-              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Vacancy: </p>
-              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Job Nature: </p>
-              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Salary: </p>
-              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Location: </p>
-              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Deadline: </p>
+              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Published On: <%=rs.getString(12) %></p>
+              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Vacancy: <%=rs.getString(6) %></p>
+              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Job Nature: <%=rs.getString(5) %></p>
+              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Salary: <%=rs.getString(8) %></p>
+              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Location: <%=rs.getString(7) %></p>
+              <p class="card-text"><span><i class="ri-arrow-drop-right-line"></i></span> Deadline: <%=rs.getString(9) %></p>
 
             </div>
           </div><!-- End Default Card -->
