@@ -40,11 +40,11 @@ public class NonITJobPostController extends HttpServlet {
 		String vacancy=request.getParameter("vacancy");
 		String skills=request.getParameter("skills");
 		
-		//**************************************
+		//**************
 				//Email sending pending
 				//alerts to job sekkers pending
 				
-				//*******************************
+				//***********
 				
 				HttpSession session=request.getSession();
 

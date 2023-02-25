@@ -87,7 +87,7 @@ public class RecruiterDAO {
 		ResultSet rs = null;
 		con = DBConnection.getConnection();
 		try {
-			ps = con.prepareStatement("select * from recruiter_profile where recruiter_id=?");
+			ps = con.prepareStatement("select * from recrutier_profile where recruiter_id=?");
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			if (rs.next()) {
@@ -101,7 +101,41 @@ public class RecruiterDAO {
 		}
 		return f1;
 	}
-	
+
+	public int addProfile(int id, String regNo, String regDate, String size, String about, String city, String state,
+			String country, String email, String twitter, String linkedin, String web,String phone,String logo) {
+
+		
+			int i = 0;
+
+			con = DBConnection.getConnection();
+			try {
+				ps = con.prepareStatement(
+						"update recrutier_profile set registration_no=?,registration_date=?,company_size=?,company_desc=?,company_city=?,company_state=?,company_country=?,contact_email=?,linkedin_url=?,twitter_url=?,company_website=?,contact_phone=?,company_logo=? where recruiter_id=?");
+
+				ps.setString(1, regNo);
+				ps.setString(2, regDate);
+				ps.setString(3, size);
+				ps.setString(4, about);
+				ps.setString(5, city);
+				ps.setString(6, state);
+				ps.setString(7, country);
+				ps.setString(8, email);
+				ps.setString(9, twitter);
+				ps.setString(10, linkedin);
+				ps.setString(11, web);
+				ps.setString(12, phone);
+				ps.setString(13, logo);
+				ps.setInt(14, id);
+
+				i = ps.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return i;
+		}
+		
 	public ResultSet getAllRecruiters() {
 		con = DBConnection.getConnection();
 		ResultSet rs = null;

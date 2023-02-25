@@ -94,6 +94,8 @@
                 <th>Phone</th>
                 <th>RegisteredDate</th>
                 <th>Verified</th>
+                
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -124,6 +126,7 @@
                  }
                  %>
                  </td>
+                <td>-</td>
             </tr>
         	<% 
         	i++;
@@ -142,6 +145,8 @@
                 <th>Phone</th>
                 <th>RegisteredDate</th>
                 <th>Verified</th>
+                
+                <th>Action</th>
             </tr>
         </tfoot>
     </table>

@@ -339,7 +339,45 @@ public class UserDAO {
 		return i;
 
 	}
-
+	
+	public ResultSet getAllJobs() {
+		con = DBConnection.getConnection();
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("select * from job_post");
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
+	public ResultSet getAllNonItJobs() {
+		con = DBConnection.getConnection();
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("select * from non_it_job_post");
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public ResultSet getCompanyNameById(int id) {
+		con = DBConnection.getConnection();
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("select * from recrutier_profile where recruiter_id=?");
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
 	public ResultSet getJobDetailsByJobId(int id) {
 
 		ResultSet rs = null;
@@ -355,6 +393,22 @@ public class UserDAO {
 		}
 		return rs;
 	}
+	public ResultSet getJobDetailsByJobIdandUser(int id,int user) {
+
+		ResultSet rs = null;
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("select * from job_post where job_id=? and user_id=?");
+			ps.setInt(1, id);
+			ps.setInt(2, user);
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
 
 	public ResultSet getCompanyDetails(int id) {
 
@@ -362,7 +416,7 @@ public class UserDAO {
 
 		con = DBConnection.getConnection();
 		try {
-			ps = con.prepareStatement("select * from recrutier_profile where RECRUITER_ID=?");
+			ps = con.prepareStatement("select * from recrutier_profile where recruiter_id=?");
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
@@ -372,6 +426,173 @@ public class UserDAO {
 		}
 		return rs;
 
+	}
+
+	public int jobApply(String fileName, String ques1, String ques2, int jobid, int recid, int userid) {
+		int i = 0;
+		Timestamp date = new Timestamp(new Date().getTime());
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement(
+					"insert into job_apply(recrutier_id ,user_id ,job_id ,resume_pdf,ques1,ques2,submitted_date) values(?,?,?,?,?,?,?)");
+			ps.setInt(1, recid);
+			ps.setInt(2, userid);
+			ps.setInt(3, jobid);
+			ps.setString(4, fileName);
+			ps.setString(5, ques1);
+			ps.setString(6, ques2);
+			ps.setTimestamp(7, date);
+			
+
+			i = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	public ResultSet checkJobApplied(int jobid, int userid) {
+		ResultSet rs = null;
+
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("select * from job_apply where user_id=? and job_id=?");
+			ps.setInt(1, userid);
+			ps.setInt(2, jobid);
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+
+		
+	}
+	
+	public ResultSet filterByTypeAndLocation(String type,String location,String company) {
+		
+		ResultSet rs=null;
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("select * from job_post where jo_type=? and job_location=? and company_name=?");
+			ps.setString(1, type);
+			ps.setString(2, location);
+			ps.setString(3, company);
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return rs;
+	}
+	public ResultSet getAllCandidatesById(int id) {
+
+		ResultSet rs = null;
+
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("select * from job_apply where recrutier_id=?");
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+
+	}
+	public ResultSet getAllCandidatesByUserId(int id) {
+
+		ResultSet rs = null;
+
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("select * from job_apply where user_id=?");
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+
+	}
+	public int updateShortlistResumeStatus(int userid) {
+		int i=0;
+
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("update job_apply set resume_status='Yes' where user_id=?");
+			ps.setInt(1, userid);
+			//ps.setInt(2, jobid);
+			 i = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return i;
+
+		
+	}
+	public int updateShortlistAptiStatus( int userid) {
+		int i=0;
+
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("update job_apply set apti_status='Yes' where user_id=?");
+			ps.setInt(1, userid);
+			
+			 i = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return i;
+
+		
+	}
+	public int updateShortlistInterviewStatus( int userid) {
+		int i=0;
+
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("update job_apply set interview_status='Yes' where user_id=?");
+			ps.setInt(1, userid);
+			
+			 i = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return i;
+
+		
+	}
+	public int updateShortlistRejectStatus( int userid) {
+		int i = 0;
+
+		con = DBConnection.getConnection();
+		try {
+			ps = con.prepareStatement("update job_apply set resume_status='No', apti_status='No',interview_status='No' where user_id=?");
+			ps.setInt(1, userid);
+			
+			 i = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return i;
+
+		
 	}
 
 }

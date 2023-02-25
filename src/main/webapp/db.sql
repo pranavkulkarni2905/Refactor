@@ -160,7 +160,38 @@ begin
 select job_post_seq.nextval into :new.job_id from dual;
 end;
 ======================================
-5. Non-IT Job
+
+5. job Apply
+create table job_apply(
+app_id number primary key,
+recrutier_id number,
+user_id number,
+job_id number,
+resume_pdf varchar2(4000),
+ques1 varchar2(4000),
+ques2 varchar2(4000),
+resume_status varchar2(4000),
+apti_score number,
+apti_status varchar2(4000),
+interview_status varchar2(4000),
+submitted_date varchar2(4000)
+);
+alter table job_apply  add corrected number;
+
+create sequence job_apply_seq
+start with 1
+increment by 1;
+
+
+create or replace trigger job_apply_trig
+before insert on job_apply
+for each row
+begin
+select job_apply_seq.nextval into :new.app_id from dual;
+end;
+=============================================
+
+6. Non-IT Job
 
 create table non_it_job_post(
 job_id number primary key,
@@ -186,5 +217,4 @@ for each row
 begin
 select non_it_job_post_seq.nextval into :new.job_id from dual;
 end;
-
 ======================================

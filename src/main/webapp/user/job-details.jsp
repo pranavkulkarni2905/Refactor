@@ -5,7 +5,15 @@
 <%@page import="com.job.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  
+     <%@page errorPage="404.jsp" %>
+    <%
+ServletContext sc1 = request.getServletContext();
+User u = (User) sc1.getAttribute("user-login-success-context");
+if (u == null) {
+	//session.setAttribute("user-login", 404);
+	response.sendRedirect("404.jsp");
+}
+%>  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +21,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>WorkConnect | User DashBoard</title>
+  <title>WorkConnect | Job Details</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -56,7 +64,8 @@ $(document).ready(function(){
 
 <%
 
-	int id=1;
+	//int id=1;
+	int id=(Integer.parseInt(request.getParameter("id")));
 	UserDAO ud=new UserDAO();
 	
 	ResultSet rs=ud.getJobDetailsByJobId(id);
@@ -84,7 +93,7 @@ $(document).ready(function(){
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="">Home</a></li>
           <li class="breadcrumb-item">Dashboard</li>
-          <li class="breadcrumb-item">Listed Jobs</li>
+          <li class="breadcrumb-item"><a href="job-list.jsp">Job list</a></li>
           <li class="breadcrumb-item active">Job Details</li>
         </ol>
       </nav>
@@ -127,7 +136,7 @@ $(document).ready(function(){
               
               <!-- <button type="button" class="align-self-end btn btn-primary">Apply Now</button> -->
 <div class="position-absolute bottom-0 start-50 translate-middle-x">
-  <a href="../user/job-apply.jsp" class="btn btn-primary">Apply Now</a>
+  <a href="job-apply.jsp?jobid=<%=id %>&userid=<%= u.getUser_id()%>&recid=<%=rs.getInt(2) %>" class="btn btn-primary">Apply Now</a>
 </div>
 
             </div>

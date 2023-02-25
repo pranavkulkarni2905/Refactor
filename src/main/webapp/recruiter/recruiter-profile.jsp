@@ -1,5 +1,5 @@
 <%@page import="com.job.DAO.RecruiterDAO"%>
-<%@page import="com.job.DAO.UserDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page errorPage="404.jsp"%>
@@ -66,6 +66,8 @@ if (u == null) {
 	<%@ include file="_header.jsp"%>
 	<%@ include file="_sidebar.jsp"%>
 
+	
+
 	<%
 	ServletContext sc2 = request.getServletContext();
 	RecruiterDAO ad1 = new RecruiterDAO();
@@ -75,68 +77,63 @@ if (u == null) {
 
 
 	<main id="main" class="main">
-		<%
-		try {
-			Boolean msg1 = (Boolean) session.getAttribute("edit-profile-success");
-			if (msg1 == true) {
-		%>
-		<div class="toast-container"
-			style="position: absolute; top: 10px; right: 10px;">
-			<div class="toast fade show">
-				<div class="toast-header bg-success text-white">
-					<strong class="me-auto"><i class="bi-globe"></i> Success!</strong>
-					<small>just now</small>
-					<button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-				</div>
-				<div class="toast-body">
-					<h5>
-						<b> Profile Changes saved successfully!! </b>
-					</h5>
-				</div>
-			</div>
-		</div>
-		<%
-		}
-
-		} catch (Exception e) {
-		//e.printStackTrace();
-		}
-		session.removeAttribute("edit-profile-success");
-		%>
-		<%
-		try {
-			Boolean msg1 = (Boolean) session.getAttribute("edit-profile-fail");
-			if (msg1 == false) {
-		%>
-		<div class="toast-container"
-			style="position: absolute; top: 10px; right: 10px;">
-			<div class="toast fade show">
-				<div class="toast-header bg-danger text-white">
-					<strong class="me-auto"><i class="bi-globe"></i> Error!</strong> <small>just
-						now</small>
-					<button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-				</div>
-				<div class="toast-body">
-					<h5>
-						<b> Something went wrong!! </b>
-					</h5>
-				</div>
-			</div>
-		</div>
-		<%
-		}
-
-		} catch (Exception e) {
-		//e.printStackTrace();
-		}
-		session.removeAttribute("edit-profile-fail");
-		%>
-
+		<%try{
+			boolean msg = (boolean) session.getAttribute("recrutier-profile-success");
+			if (msg==true) {
+			%>
+			<div class="toast-container" style="position: absolute; top: 10px; right: 10px;">
+        <div class="toast fade show">
+            <div class="toast-header bg-success text-white">
+                <strong class="me-auto"><i class="bi-globe"></i> Success!</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+               <h5><b> Profile Submitted Successfully!
+            </b></h5>
+            </div>
+        </div>
+        </div>
+			
+			<%
+			}
+}catch(Exception e){
+	
+}
+			session.removeAttribute("recrutier-profile-success");
+			%>
+			<%try{
+			Boolean msg1 = (Boolean) session.getAttribute("recrutier-profile-fail");
+			if (msg1==false) {
+			%>
+				<div class="toast-container" style="position: absolute; top: 10px; right: 10px;">
+        
+    
+        <div class="toast fade show">
+            <div class="toast-header bg-danger text-white">
+                <strong class="me-auto"><i class="bi-globe"></i> Oops!!</strong>
+                <small>2 seconds ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+               <h5><b>Error !!</b></h5>
+            </div>
+        </div>
+    </div>
+			<%
+			}
+       	
+			}catch(Exception e){
+				//e.printStackTrace();
+			}
+			session.removeAttribute("recrutier-profile-fail");
+			%>
+		
 		<div class="pagetitle">
 			<h1>Profile</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="">Home</a></li>
+					<li class="breadcrumb-item"><a href="recruiter-login.jsp">Home</a></li>
 					<li class="breadcrumb-item">Recruiter</li>
 					<li class="breadcrumb-item active">Profile</li>
 				</ol>
@@ -322,7 +319,7 @@ if (u == null) {
 										<div class="col-lg-3 col-md-4 label">Industry</div>
 										<div class="col-lg-3 col-md-8"><%=us.getIndustryName()%></div>
 										<div class="col-lg-3 col-md-4 label">Verified Account</div>
-										<div class="col-lg-9 col-md-8">
+										<div class="col-lg-3 col-md-8">
 											<b><i class="bi bi-check-circle-fill"
 												style="color: green"></i></b>
 										</div>
@@ -335,7 +332,7 @@ if (u == null) {
 								<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
 									<!-- Profile Edit Form -->
-									<form action="../PersonalProfileController" method="post"
+									<form action="../ProfileController" method="post"
 										enctype='multipart/form-data'>
 
 										<div class="row mb-3">
@@ -351,8 +348,8 @@ if (u == null) {
 												<%
 												} else {
 												%>
-												<img src="../user-images/<%=us.getCompanyLogo()%>"
-													alt="Profile">
+            	  <img src="../company-images/<%=us.getCompanyLogo() %>" alt="Profile" class="rounded-circle">
+
 
 												<%
 												}
@@ -378,7 +375,7 @@ if (u == null) {
 												class="col-md-4 col-lg-3 col-form-label">Registration
 												No</label>
 											<div class="col-md-8 col-lg-9">
-												<input name="fname" type="text" class="form-control"
+												<input name="regno" type="text" class="form-control"
 													id="fullName" value="<%=us.getRegistrationNo()%>">
 											</div>
 										</div>
@@ -387,7 +384,7 @@ if (u == null) {
 												class="col-md-4 col-lg-3 col-form-label">Registration
 												Date</label>
 											<div class="col-md-8 col-lg-9">
-												<input name="mname" type="date" class="form-control"
+												<input name="regdate" type="date" class="form-control"
 													id="fullName" value="<%=us.getRegistrationDate()%>">
 											</div>
 										</div>
@@ -395,11 +392,11 @@ if (u == null) {
 											<label for="fullName"
 												class="col-md-4 col-lg-3 col-form-label">Company Size</label>
 											<div class="col-md-8 col-lg-9">
-												<select name="gender" class="form-select"
+												<select name="size" class="form-select"
 													aria-label="Default select example">
-													<option value="Male" selected>Male</option>
-													<option value="Female">Female</option>
-													<option value="Other">Other</option>
+													<option value="0-100" selected>0-100</option>
+													<option value="101-1000">101-1000</option>
+													<option value="1000-10000">1000-10000</option>
 
 												</select>
 											</div>
@@ -418,30 +415,51 @@ if (u == null) {
 											<label for="inputDate"
 												class="col-md-4 col-lg-3 col-form-label">Contact Email</label>
 											<div class="col-md-8 col-lg-9">
-												<input name="dob" type="date" value="<%=us.getContactEmail()%>"
+												<input name="email" type="email" value="<%=us.getContactEmail()%>"
 													class="form-control">
 											</div>
 										</div>
-
+										
 										<div class="row mb-3">
-											<label class="col-md-4 col-lg-3 col-form-label">Gender</label>
+											<label for="inputDate"
+												class="col-md-4 col-lg-3 col-form-label">Contact Phone</label>
 											<div class="col-md-8 col-lg-9">
-												<select name="gender" class="form-select"
-													aria-label="Default select example">
-													<option value="Male" selected>Male</option>
-													<option value="Female">Female</option>
-													<option value="Other">Other</option>
-
-												</select>
+												<input name="phone" type="text" value="<%=us.getContactPhone()%>"
+													class="form-control">
 											</div>
 										</div>
+										<div class="row mb-3">
+											<label for="inputDate"
+												class="col-md-4 col-lg-3 col-form-label">City</label>
+											<div class="col-md-8 col-lg-9">
+												<input name="city" type="text" value="<%=us.getCompanyCity()%>"
+													class="form-control">
+											</div>
+										</div>
+										<div class="row mb-3">
+											<label for="inputDate"
+												class="col-md-4 col-lg-3 col-form-label">State</label>
+											<div class="col-md-8 col-lg-9">
+												<input name="state" type="text" value="<%=us.getCompanyState()%>"
+													class="form-control">
+											</div>
+										</div>
+										<div class="row mb-3">
+											<label for="inputDate"
+												class="col-md-4 col-lg-3 col-form-label">Country</label>
+											<div class="col-md-8 col-lg-9">
+												<input name="country" type="text" value="<%=us.getCompanyCountry()%>"
+													class="form-control">
+											</div>
+										</div>
+										
 
 
 										<div class="row mb-3">
 											<label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter
 												Profile</label>
 											<div class="col-md-8 col-lg-9">
-												<input name="github" type="url" class="form-control"
+												<input name="twitter" type="url" class="form-control"
 													id="Twitter" value="<%=us.getTwitterUrl()%>">
 											</div>
 										</div>
@@ -461,7 +479,7 @@ if (u == null) {
 												class="col-md-4 col-lg-3 col-form-label">Company Website
 												</label>
 											<div class="col-md-8 col-lg-9">
-												<input name="portfolio" type="url" class="form-control"
+												<input name="web" type="url" class="form-control"
 													id="Instagram" value="<%=us.getCompanyWebsite()%>">
 											</div>
 										</div>
@@ -574,8 +592,7 @@ if (u == null) {
 				</div>
 			</div>
 		</section>
-
-	</main>
+		</main>
 	<!-- End #main -->
 
 	<!-- ======= Footer ======= -->

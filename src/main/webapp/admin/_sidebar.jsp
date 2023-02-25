@@ -60,6 +60,12 @@
           <span>View Recruiters</span>
         </a>
       </li><!-- End Contact Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="set-aptitude.jsp">
+          <i class="bi bi-person"></i>
+          <span>Set Aptitude(Add Question Bank)</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
 
      
 

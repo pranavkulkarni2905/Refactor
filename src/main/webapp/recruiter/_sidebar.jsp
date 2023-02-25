@@ -48,20 +48,21 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
-<!--       <li class="nav-item">
-        <a class="nav-link collapsed" href="build-resume.jsp">
+ <li class="nav-item">
+        <a class="nav-link collapsed" href="applied-candidates.jsp">
           <i class="bi bi-file-earmark-code"></i>
-          <span>Build Resume</span>
+          <span>Applied Candidates</span>
         </a>
-      </li>End F.A.Q Page Nav
+      </li>
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="">
           <i class="bi bi-envelope"></i>
           <span>Contact</span>
         </a>
-      </li>End Contact Page Nav -->
-      
+      </li>
+       
       
 
      

@@ -68,6 +68,84 @@ User us =ad1.getUserDataById(id);
  
 
   <main id="main" class="main">
+    <%
+	try {
+		Boolean msg1 = (Boolean) session.getAttribute("app-success");
+		if (msg1 == true) {
+	%>
+	<div class="toast-container" style="position: absolute; top: 10px; right: 10px;">
+        <div class="toast fade show">
+            <div class="toast-header bg-success text-white">
+                <strong class="me-auto"><i class="bi-globe"></i> Success!</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+               <h5><b> Application Submitted successfully!!
+            </b></h5>
+            </div>
+        </div>
+        </div>
+	<%
+	}
+
+	} catch (Exception e) {
+	//e.printStackTrace();
+	}
+	session.removeAttribute("app-success");
+	%>
+	  <%
+	try {
+		Boolean msg1 = (Boolean) session.getAttribute("app-fail");
+		if (msg1 == false) {
+	%>
+	<div class="toast-container" style="position: absolute; top: 10px; right: 10px;">
+        <div class="toast fade show">
+            <div class="toast-header bg-warning text-white">
+                <strong class="me-auto"><i class="bi-globe"></i> Error!</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+               <h5><b> Error!
+            </b></h5>
+            </div>
+        </div>
+        </div>
+	<%
+	}
+
+	} catch (Exception e) {
+	//e.printStackTrace();
+	}
+	session.removeAttribute("app-fail");
+	%>
+	<%
+	try {
+		Boolean msg1 = (Boolean) session.getAttribute("already-fail");
+		if (msg1 == false) {
+	%>
+	<div class="toast-container" style="position: absolute; top: 10px; right: 10px;">
+        <div class="toast fade show">
+            <div class="toast-header bg-warning text-white">
+                <strong class="me-auto"><i class="bi-globe"></i> Error!</strong>
+                <small>just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+               <h5><b> Already Applied for this job !
+            </b></h5>
+            </div>
+        </div>
+        </div>
+	<%
+	}
+
+	} catch (Exception e) {
+	//e.printStackTrace();
+	}
+	session.removeAttribute("already-fail");
+	%>
   <%
 	try {
 		Boolean msg1 = (Boolean) session.getAttribute("edit-profile-success");

@@ -52,6 +52,11 @@ if (u == null) {
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="../assets/app-invoice.min.css">
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
 <!-- Template Main CSS File -->
 <link href="../assets/css/style.css" rel="stylesheet">
@@ -364,15 +369,14 @@ if (u == null) {
 									<%
 									} else {
 									%>
-									<div class="sheet">
+									<div id="invoice">
+									<div  class="sheet">
 										<button class="btn btn-print btn-sm btn-light"
 											onClick="handlePrint()">
 											<i class="fa fa-print"></i>
 
 											<div class="invoice-action-btn">
-												<a href="#" class="invoice-print">
-													<span>Print</span>
-												</a>
+												<button  class="btn btn-primary" id="download"><i class="fa fa-download"></i> Download</button>
 											</div>
 										</button>
 										<div class="two-column resume">
@@ -610,7 +614,7 @@ if (u == null) {
 
 									</div>
 								</div>
-
+</div>
 
 								<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 									<div class="card">
@@ -975,6 +979,25 @@ if (u == null) {
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
+		
+		<script type="text/javascript">
+window.onload = function () {
+    document.getElementById("download")
+        .addEventListener("click", () => {
+            const invoice = this.document.getElementById("invoice");
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: 1,
+                filename: 'Resume.pdf',
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        })
+}
+</script>  
 
 	<!-- Vendor JS Files -->
 	<script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>

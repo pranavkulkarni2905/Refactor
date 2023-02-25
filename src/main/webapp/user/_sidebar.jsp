@@ -53,8 +53,19 @@
           <span>Listed Jobs</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
+<li class="nav-item">
+        <a class="nav-link collapsed" href="applied-jobs.jsp">
+          <i class="bi bi-file-earmark-code"></i>
+          <span>Applied Jobs</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
 
-
+<li class="nav-item">
+        <a class="nav-link collapsed" href="take-exam.jsp">
+          <i class="bi bi-file-earmark-code"></i>
+          <span>Take Aptitude</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="">
           <i class="bi bi-envelope"></i>

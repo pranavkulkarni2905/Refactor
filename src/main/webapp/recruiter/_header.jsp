@@ -199,7 +199,7 @@ if (u1 == null) {
             	  <% 
               }else{
             	  %>
-            	  <img src="../user-images/<%=u1.getCompanyLogo() %>" alt="Profile" class="rounded-circle">
+            	  <img src="../company-images/<%=u1.getCompanyLogo() %>" alt="Profile" class="rounded-circle">
             	  <% 
               }
               %>
