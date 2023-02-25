@@ -5,7 +5,7 @@
 
 **Public Github Repository Link:** https://github.com/pranavkulkarni2905/Refactor.git
 
-**PPT Presentation Link:** [PPT LInk](shorturl.at/lFH37https://www.canva.com/design/DAFbjHdF9bA/xNVc6JQqqGxKA_nvmlRBYw/view?utm_content=DAFbjHdF9bA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+**PPT Presentation Link:** https://www.canva.com/design/DAFbjHdF9bA/xNVc6JQqqGxKA_nvmlRBYw/view?utm_content=DAFbjHdF9bA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 Workconnect is a Web based application or online platform that aims to address the issue of unemployment by providing resources and tools for job seekers to find employment opportunities, as well as connecting them with potential employers. It also provides additional resources such as resume building, and personalized job alerts. The goal of the project is to make it easier for job seekers to find employment and to help address the issue of unemployment in the community.
 
