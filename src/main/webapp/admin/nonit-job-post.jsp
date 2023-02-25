@@ -154,7 +154,16 @@
             <option value="Temporary">Temporary</option>
           </select>
         </div>
-        
+          <div class="col-md-4">
+          <label for="inputType" class="form-label">Job Categories</label>
+          <select id="jobType" class="form-select" name="category" >
+            <option selected disabled>Select...</option>
+            <option value="Full-Time">educator</option>
+            <option value="part-Time">Marketing</option>
+            <option value="Contract">Pharmaceuticals/Health care</option>
+            <option value="Internship">Construction</option>
+          </select>
+        </div>
         <div class="col-md-4">
           <label for="inputVac" class="form-label">Vacancy</label>
           <input type="number" class="form-control" id="jobVac" name="vacancy">

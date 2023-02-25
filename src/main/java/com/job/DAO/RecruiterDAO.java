@@ -101,4 +101,17 @@ public class RecruiterDAO {
 		}
 		return f1;
 	}
+	
+	public ResultSet getAllRecruiters() {
+		con = DBConnection.getConnection();
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("select * from recrutier_profile");
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }

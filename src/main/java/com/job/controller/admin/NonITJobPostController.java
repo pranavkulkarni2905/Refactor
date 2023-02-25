@@ -32,6 +32,7 @@ public class NonITJobPostController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String title=request.getParameter("title");
 		String type=request.getParameter("type");
+		String category=request.getParameter("category");
 		String location=request.getParameter("location");
 		String salary=request.getParameter("salary");
 		String deadline=request.getParameter("deadline");
@@ -49,7 +50,7 @@ public class NonITJobPostController extends HttpServlet {
 
 				
 				AdminDAO ad=new AdminDAO();
-				int i= ad.addNonITJob(title, type, location, salary, deadline, desc, vacancy, skills);
+				int i= ad.addNonITJob(title, type,category, location, salary, deadline, desc, vacancy, skills);
 				
 				if(i>0) {
 		   		 session.setAttribute("job-post-success", true);
